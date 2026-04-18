@@ -1,6 +1,7 @@
-"use client";
+"use client"
 
 import React, { useEffect, useState } from "react";
+import Image from "next/image";
 import { motion, animate, useMotionValue, useTransform } from "motion/react";
 import { Mail, Github } from "lucide-react";
 
@@ -33,7 +34,7 @@ export default function Home() {
         <h2 className="text-xl italic mb-2">@ittuann</h2>
 
         <div className="text-xl md:text-2xl text-gray-600 h-10 flex items-center tracking-wide">
-          {/* 打字文本 */}
+          {/* 打字动画 */}
           <motion.span>{displayText}</motion.span>
           {/* 星星动画 打字动效结束后出现 */}
           {isTypingComplete && (
@@ -151,10 +152,12 @@ export default function Home() {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >
-          <img
-            src="./avatar.png"
+          <Image
+            src="/avatar.webp"
             alt="air wish avatar"
-            className="w-full h-full rounded-full"
+            width={320}
+            height={320}
+            className="rounded-full"
           />
         </motion.div>
       </div>
