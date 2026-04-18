@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Noto_Sans_Mono } from "next/font/google";
-import { GoogleAnalytics, GoogleTagManager } from '@next/third-parties/google'
+import Script from "next/script";
 import "@/styles/globals.css";
 
 const noto = Noto_Sans_Mono({
@@ -22,13 +22,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <GoogleAnalytics gaId="G-QETGFF96H1" />
-      <GoogleTagManager gtmId="G-QETGFF96H1" />
-      <body
-        className={`${noto.className} antialiased`}
-      >
-        {children}
-      </body>
+      <head>
+        <Script
+          id="gtm"
+          src="https://www.googletagmanager.com/gtag/js?id=G-QETGFF96H1"
+        />
+        <Script id="gtag">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-QETGFF96H1');
+          `}
+        </Script>
+      </head>
+      <body className={`${noto.className} antialiased`}>{children}</body>
     </html>
   );
 }
