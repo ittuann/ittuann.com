@@ -1,0 +1,95 @@
+name: Deploy to dist branch
+
+on:
+  workflow_dispatch:
+  workflow_run:
+    workflows: [Build Site]
+    types: [completed]
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    if: >
+      (github.event_name == 'workflow_run' &&
+      github.event.workflow_run.conclusion == 'success' &&
+      github.event.workflow_run.event == 'push') ||
+      (github.event_name == 'workflow_dispatch')
+
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checking Out
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 0
+
+      - uses: pnpm/action-setup@v5
+        with:
+          version: 10
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          cache: "pnpm"
+          node-version: 22
+
+      - name: Install Dependencies
+        run: pnpm install --frozen-lockfile
+
+      - name: Cache Next.js
+        uses: actions/cache@v5
+        with:
+          path: ${{ github.workspace }}/.next/cache
+          key: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx', '**/*.mdx') }}
+          restore-keys: ${{ runner.os }}-nextjs-${{ hashFiles('**/pnpm-lock.yaml') }}-
+
+      - name: Build
+        run: pnpm build
+
+      - name: Prepare Deploy
+        id: prepare_deploy
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+          MAIN_LATEST_HASH=$(git rev-parse --short=7 HEAD)
+
+          echo "--- Clone dist branch to directory. ---"
+          git clone https://github.com/ittuann/qingshanasd.git dist-branch
+          cd dist-branch
+          git checkout dist
+
+          echo "--- Clean old files: ---"
+          echo "--- Delete all tracked files ---"
+          git rm -rf . || echo "No tracked files to remove."
+          echo "--- Delete all untracked files ---"
+          git clean -fxd
+
+          echo "--- Copy new files. ---"
+          rsync -av ../dist/ .
+          git add .
+
+          echo "--- Attempts to commit changes. If there are no changes the new commit will not be created. ---"
+          git commit -s -m "Auto deployed dist branch - $MAIN_LATEST_HASH" || echo "No changes to commit."
+
+          echo "--- Check if there has been a new commit. ---"
+          LOCAL_HASH=$(git rev-parse HEAD)
+          REMOTE_HASH=$(git rev-parse @{u})
+          if [ "$LOCAL_HASH" != "$REMOTE_HASH" ]; then
+            echo "has_changes=true" >> $GITHUB_OUTPUT
+            echo "has_changes=true"
+          else
+            echo "has_changes=false" >> $GITHUB_OUTPUT
+            echo "has_changes=false"
+          fi
+
+      - name: Push Commit
+        if: steps.prepare_deploy.outputs.has_changes == 'true'
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: dist
+          directory: dist-branch
