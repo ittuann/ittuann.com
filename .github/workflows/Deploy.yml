@@ -58,7 +58,7 @@ jobs:
           MAIN_LATEST_HASH=$(git rev-parse --short=7 HEAD)
 
           echo "--- Clone dist branch to directory. ---"
-          git clone https://github.com/ittuann/qingshanasd.git dist-branch
+          git clone https://github.com/ittuann/ittuann.com dist-branch
           cd dist-branch
           git checkout dist
 
