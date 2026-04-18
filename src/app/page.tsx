@@ -34,7 +34,7 @@ export default function Home() {
         <h1 className="text-4xl font-bold mb-1">air wish</h1>
         <h2 className="text-xl italic mb-4">@ittuann</h2>
 
-        <div className="text-xl md:text-2xl text-gray-600 flex justify-center md:justify-start items-center">
+        <div className="text-xl md:text-2xl text-gray-600 text-center md:text-left leading-relaxed">
           {/* 打字动画 */}
           <motion.span>{displayText}</motion.span>
           {/* 星星动画 打字动效结束后出现 */}
@@ -43,7 +43,7 @@ export default function Home() {
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.3, type: "spring" }}
-              className="ml-1 inline-block"
+              className="ml-1 inline-block align-baseline"
             >
               <motion.span
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] }}
@@ -59,10 +59,10 @@ export default function Home() {
             </motion.span>
           )}
           {/* 闪烁光标 */}
-          <motion.div
+          <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-            className="w-1 h-7 bg-gray-400 ml-1"
+            className="inline-block w-1 h-6 bg-gray-400 ml-1 align-middle"
           />
         </div>
 
