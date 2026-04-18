@@ -6,7 +6,7 @@ import { motion, animate, useMotionValue, useTransform } from "motion/react";
 import { Mail, Github } from "lucide-react";
 
 export default function Home() {
-  const roleText = "Coding with love & magic ~";
+  const roleText = "Coding with love & magic~";
 
   const count = useMotionValue(0);
   const rounded = useTransform(count, (latest) => Math.round(latest));
@@ -27,13 +27,14 @@ export default function Home() {
   }, [count]);
 
   return (
-    <main className="flex flex-col md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4">
-      {/* 左侧文本 */}
-      <div className="md:w-1/2 text-center md:text-left mb-6 md:mb-0 md:mr-8">
-        <h1 className="text-4xl font-bold mb-4">air wish</h1>
-        <h2 className="text-xl italic mb-2">@ittuann</h2>
+    <main className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4">
 
-        <div className="text-xl md:text-2xl text-gray-600 h-10 flex items-center tracking-wide">
+      {/* 文本 */}
+      <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:mr-8">
+        <h1 className="text-4xl font-bold mb-1">air wish</h1>
+        <h2 className="text-xl italic mb-4">@ittuann</h2>
+
+        <div className="text-xl md:text-2xl text-gray-600 flex justify-center md:justify-start items-center">
           {/* 打字动画 */}
           <motion.span>{displayText}</motion.span>
           {/* 星星动画 打字动效结束后出现 */}
@@ -45,13 +46,13 @@ export default function Home() {
               className="ml-1 inline-block"
             >
               <motion.span
-                className="inline-block origin-center"
                 animate={{ scale: [1, 1.2, 1], rotate: [0, 15, -15, 0] }}
                 transition={{
                   repeat: Infinity,
                   duration: 2,
                   ease: "easeInOut",
                 }}
+                className="inline-block origin-center"
               >
                 🌟
               </motion.span>
@@ -59,14 +60,14 @@ export default function Home() {
           )}
           {/* 闪烁光标 */}
           <motion.div
-            className="w-1 h-6 md:h-7 bg-gray-400 ml-1"
             animate={{ opacity: [1, 0, 1] }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
+            className="w-1 h-7 bg-gray-400 ml-1"
           />
         </div>
 
         {/* 联系方式 */}
-        <div className="flex gap-4 mt-8">
+        <div className="flex justify-center md:justify-start gap-4 mt-8">
           {[
             {
               icon: Github,
@@ -102,7 +103,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* 右侧头像 */}
+      {/* 头像 */}
       <div className="relative w-2/3 md:w-1/3 max-w-xs">
         {/* 漂浮装饰物 */}
         <motion.div
