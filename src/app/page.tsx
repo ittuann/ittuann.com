@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
@@ -28,7 +28,6 @@ export default function Home() {
 
   return (
     <main className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4">
-
       {/* 文本 */}
       <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:mr-8">
         <h1 className="text-4xl font-bold mb-1">air wish</h1>
@@ -73,8 +72,14 @@ export default function Home() {
               icon: Github,
               href: "https://github.com/ittuann",
               label: "GitHub",
+              describe: "@ittuann",
             },
-            { icon: Mail, href: "mailto:ittuann@outlook.com", label: "Email" },
+            {
+              icon: Mail,
+              href: "mailto:ittuann@outlook.com",
+              label: "Email",
+              describe: "ittuann@outlook.com",
+            },
           ].map((item, index) => {
             const Icon = item.icon;
             return (
@@ -93,10 +98,11 @@ export default function Home() {
                   type: "spring",
                   stiffness: 200,
                 }}
-                whileHover={{ scale: 1.1, y: -2 }}
-                className="p-2.5 bg-white rounded-full shadow-sm hover:shadow-md text-gray-500 hover:text-black transition-all cursor-pointer"
+                whileHover={{ scale: 1.05, y: -2 }}
+                className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm hover:shadow-md text-gray-500 hover:text-black transition-all cursor-pointer"
               >
                 <Icon size={20} />
+                <span className="text-sm font-medium">{item.describe}</span>
               </motion.a>
             );
           })}
