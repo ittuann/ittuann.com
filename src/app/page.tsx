@@ -2,14 +2,8 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Noto_Sans_Mono } from "next/font/google";
 import { Mail, Github } from "lucide-react";
 import { motion, animate, useMotionValue, useTransform } from "motion/react";
-
-const noto = Noto_Sans_Mono({
-  subsets: ["latin"],
-  fallback: ["Noto_Sans_SC", "Noto_Sans_JP"],
-});
 
 export default function Home() {
   const roleText = "Coding with love & magic~";
@@ -33,9 +27,7 @@ export default function Home() {
   }, [count]);
 
   return (
-    <main
-      className={`flex flex-col-reverse md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4 text-autospace ${noto.className}`}
-    >
+    <main className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen p-4 bg-[#fafafa] text-black">
       {/* 文本 */}
       <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:mr-8">
         <h1 className="text-4xl font-bold mb-1">air wish</h1>

@@ -1,17 +1,31 @@
 import type { Metadata } from "next";
-import { Noto_Sans_Mono } from "next/font/google";
+import { Noto_Sans_Mono, Noto_Sans } from "next/font/google";
 import Script from "next/script";
 import "@/styles/globals.css";
 
-const noto = Noto_Sans_Mono({
+const fontMono = Noto_Sans_Mono({
   subsets: ["latin"],
-  fallback: ["Noto_Sans_SC", "Noto_Sans_JP"],
+  fallback: ["Noto_Sans_SC", "Noto_Sans_JP", "Noto_Sans"],
+  variable: "--font-mono",
+});
+
+const fontSans = Noto_Sans({
+  subsets: ["latin"],
+  variable: "--font-sans",
 });
 
 export const metadata: Metadata = {
   title: "air wish (ittuann)",
   description: "air wish (ittuann) Website",
-  keywords: ["ittuann", "blog"],
+  keywords: [
+    "ittuann",
+    "air wish",
+    "BaiQi Lu",
+    "Lu BaiQi",
+    "personal website",
+    "blog",
+    "welcome page",
+  ],
   authors: [{ name: "ittuann" }],
 };
 
@@ -36,7 +50,11 @@ export default function RootLayout({
           `}
         </Script>
       </head>
-      <body className={`${noto.className} antialiased`}>{children}</body>
+      <body
+        className={`${fontMono.variable} ${fontSans.variable} font-mono antialiased`}
+      >
+        {children}
+      </body>
     </html>
   );
 }
