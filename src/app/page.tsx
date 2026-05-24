@@ -2,8 +2,14 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { motion, animate, useMotionValue, useTransform } from "motion/react";
+import { Noto_Sans_Mono } from "next/font/google";
 import { Mail, Github } from "lucide-react";
+import { motion, animate, useMotionValue, useTransform } from "motion/react";
+
+const noto = Noto_Sans_Mono({
+  subsets: ["latin"],
+  fallback: ["Noto_Sans_SC", "Noto_Sans_JP"],
+});
 
 export default function Home() {
   const roleText = "Coding with love & magic~";
@@ -27,11 +33,13 @@ export default function Home() {
   }, [count]);
 
   return (
-    <main className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4">
+    <main
+      className={`flex flex-col-reverse md:flex-row items-center justify-center min-h-screen bg-[#fafafa] text-black p-4 text-autospace ${noto.className}`}
+    >
       {/* 文本 */}
       <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:mr-8">
         <h1 className="text-4xl font-bold mb-1">air wish</h1>
-        <h2 className="text-xl italic mb-4">@ittuann</h2>
+        <h2 className="text-xl font-semibold italic mb-4">@ittuann</h2>
 
         <div className="text-xl md:text-2xl text-gray-600 text-center md:text-left leading-relaxed">
           {/* 打字动画 */}
@@ -71,14 +79,12 @@ export default function Home() {
             {
               icon: Github,
               href: "https://github.com/ittuann",
-              label: "GitHub",
-              describe: "@ittuann",
+              describe: "GitHub @ittuann",
             },
             {
               icon: Mail,
               href: "mailto:ittuann@outlook.com",
-              label: "Email",
-              describe: "ittuann@outlook.com",
+              describe: "Email: ittuann@outlook.com",
             },
           ].map((item, index) => {
             const Icon = item.icon;
@@ -88,8 +94,8 @@ export default function Home() {
                 href={item.href}
                 target="_blank"
                 rel=""
-                aria-label={item.label}
-                title={item.label}
+                title={item.describe}
+                aria-label={item.describe}
                 initial={{ opacity: 0, y: 15, scale: 0.8 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 transition={{
@@ -99,10 +105,9 @@ export default function Home() {
                   stiffness: 200,
                 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-sm hover:shadow-md text-gray-500 hover:text-black transition-all cursor-pointer"
+                className="flex items-center gap-2 px-3 py-3 rounded-full shadow-sm hover:shadow-md bg-white text-gray-500 hover:text-black transition-all cursor-pointer"
               >
                 <Icon size={20} />
-                <span className="text-sm font-medium">{item.describe}</span>
               </motion.a>
             );
           })}
