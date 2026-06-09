@@ -36,12 +36,17 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <head>
+      <body
+        className={`${fontMono.variable} ${fontSans.variable} font-mono antialiased`}
+      >
+        {children}
+
         <Script
-          id="gtm"
+          id="gtag-js"
           src="https://www.googletagmanager.com/gtag/js?id=G-QETGFF96H1"
+          strategy="afterInteractive"
         />
-        <Script id="gtag">
+        <Script id="gtag" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
@@ -49,11 +54,15 @@ export default function RootLayout({
             gtag('config', 'G-QETGFF96H1');
           `}
         </Script>
-      </head>
-      <body
-        className={`${fontMono.variable} ${fontSans.variable} font-mono antialiased`}
-      >
-        {children}
+        <Script id="clarity" strategy="afterInteractive">
+          {`
+            (function(c,l,a,r,i,t,y){
+              c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+              t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+              y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+            })(window, document, "clarity", "script", "x3vah99fmw");
+          `}
+        </Script>
       </body>
     </html>
   );
