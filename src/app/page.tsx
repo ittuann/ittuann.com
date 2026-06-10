@@ -27,13 +27,13 @@ export default function Home() {
   }, [count]);
 
   return (
-    <main className="flex flex-col-reverse md:flex-row items-center justify-center min-h-screen p-4 bg-[#fafafa] text-black">
+    <main className="flex min-h-screen flex-col-reverse items-center justify-center bg-[#fafafa] p-4 text-black md:flex-row">
       {/* 文本 */}
-      <div className="md:w-1/2 flex flex-col items-center md:items-start text-center md:text-left mt-8 md:mt-0 md:mr-8">
-        <h1 className="text-4xl font-bold mb-1">air wish</h1>
-        <h2 className="text-xl font-semibold italic mb-4">@ittuann</h2>
+      <div className="mt-8 flex flex-col items-center text-center md:mt-0 md:mr-8 md:w-1/2 md:items-start md:text-left">
+        <h1 className="mb-1 text-4xl font-bold">air wish</h1>
+        <h2 className="mb-4 text-xl font-semibold italic">@ittuann</h2>
 
-        <div className="text-xl md:text-2xl text-gray-600 text-center md:text-left leading-relaxed">
+        <div className="text-center text-xl leading-relaxed text-gray-600 md:text-left md:text-2xl">
           {/* 打字动画 */}
           <motion.span>{displayText}</motion.span>
           {/* 星星动画 打字动效结束后出现 */}
@@ -61,12 +61,12 @@ export default function Home() {
           <motion.span
             animate={{ opacity: [1, 0, 1] }}
             transition={{ repeat: Infinity, duration: 0.8, ease: "linear" }}
-            className="inline-block w-1 h-6 bg-gray-400 ml-1 align-middle"
+            className="ml-1 inline-block h-6 w-1 bg-gray-400 align-middle"
           />
         </div>
 
         {/* 联系方式 */}
-        <div className="flex justify-center md:justify-start gap-4 mt-8">
+        <div className="mt-8 flex justify-center gap-4 md:justify-start">
           {[
             {
               icon: Github,
@@ -97,7 +97,7 @@ export default function Home() {
                   stiffness: 200,
                 }}
                 whileHover={{ scale: 1.05, y: -2 }}
-                className="flex items-center gap-2 px-3 py-3 rounded-full shadow-sm hover:shadow-md bg-white text-gray-500 hover:text-black transition-all cursor-pointer"
+                className="flex cursor-pointer items-center gap-2 rounded-full bg-white px-3 py-3 text-gray-500 shadow-sm transition-all hover:text-black hover:shadow-md"
               >
                 <Icon size={20} />
               </motion.a>
@@ -107,7 +107,7 @@ export default function Home() {
       </div>
 
       {/* 头像 */}
-      <div className="relative w-2/3 md:w-1/3 max-w-xs">
+      <div className="relative w-2/3 max-w-xs md:w-1/3">
         {/* 漂浮装饰物 */}
         <motion.div
           animate={{ y: [0, 15, 0], rotate: [-5, 5, -5] }}
@@ -117,7 +117,7 @@ export default function Home() {
             ease: "easeInOut",
             delay: 0.5,
           }}
-          className="absolute top-1 left-2 text-6xl text-purple-400 z-20 opacity-70"
+          className="absolute top-1 left-2 z-20 text-6xl text-purple-400 opacity-70"
         >
           ✦
         </motion.div>
@@ -129,7 +129,7 @@ export default function Home() {
             ease: "easeInOut",
             delay: 1,
           }}
-          className="absolute top-20 -right-5 text-5xl font-bold text-blue-400 z-0 opacity-80"
+          className="absolute top-20 -right-5 z-0 text-5xl font-bold text-blue-400 opacity-80"
         >
           +
         </motion.div>
@@ -141,18 +141,18 @@ export default function Home() {
             ease: "easeInOut",
             delay: 1.5,
           }}
-          className="absolute bottom-10 right-4 text-3xl font-bold text-gray-400 z-20 opacity-60"
+          className="absolute right-4 bottom-10 z-20 text-3xl font-bold text-gray-400 opacity-60"
         >
           #
         </motion.div>
         <motion.div
           animate={{ scale: [1, 1.5, 1], opacity: [0.5, 1, 0.5] }}
           transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-          className="absolute bottom-5 left-6 w-3 h-3 rounded-full bg-blue-300 z-0"
+          className="absolute bottom-5 left-6 z-0 h-3 w-3 rounded-full bg-blue-300"
         />
 
         <motion.div
-          className="w-full h-full rounded-full overflow-hidden shadow-xl z-10"
+          className="z-10 h-full w-full overflow-hidden rounded-full shadow-xl"
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 300 }}
         >

@@ -17,8 +17,8 @@
     "start": "next start",
     "lint": "eslint",
     "lint:fix": "eslint --fix .",
-    "format": "prettier --write '**/*.{js,jsx,mjs,ts,mts,css,scss,html,json,jsonc,json5,yaml,yml,toml,md}'",
-    "format:check": "prettier --check '**/*.{js,jsx,mjs,ts,mts,css,scss,html,json,jsonc,json5,yaml,yml,toml,md}'",
+    "format": "prettier --write '**/*.{js,jsx,mjs,ts,tsx,mts,css,scss,html,json,jsonc,json5,yaml,yml,toml,md}'",
+    "format:check": "prettier --check '**/*.{js,jsx,mjs,ts,tsx,mts,css,scss,html,json,jsonc,json5,yaml,yml,toml,md}'",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -39,6 +39,7 @@
     "eslint-config-next": "15.5.18",
     "jest": "^30.3.0",
     "prettier": "^3.8.3",
+    "prettier-plugin-tailwindcss": "^0.8.0",
     "serve": "^14.2.6",
     "tailwindcss": "^4",
     "typescript": "^5"
