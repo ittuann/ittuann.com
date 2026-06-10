@@ -54,7 +54,7 @@ export default function RootLayout({
             gtag('config', 'G-QETGFF96H1');
           `}
         </Script>
-        <Script id="clarity" strategy="afterInteractive">
+        <Script id="msclarity" strategy="afterInteractive">
           {`
             (function(c,l,a,r,i,t,y){
               c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
