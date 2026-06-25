@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Image from "next/image";
-import { Mail, Github } from "lucide-react";
+import { Mail, Github, NotebookText } from "lucide-react";
 import { motion, animate, useMotionValue, useTransform } from "motion/react";
 
 export default function Home() {
@@ -68,6 +68,11 @@ export default function Home() {
         {/* 联系方式 */}
         <div className="mt-8 flex justify-center gap-4 md:justify-start">
           {[
+            {
+              icon: NotebookText,
+              href: "https://blog.ittuann.com",
+              describe: "Blog",
+            },
             {
               icon: Github,
               href: "https://github.com/ittuann",
