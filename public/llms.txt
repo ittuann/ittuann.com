@@ -1,0 +1,12 @@
+# air wish Website
+
+> This is the landing page for air wish (@ittuann) website.
+
+It provides information about air wish Blog, Contact information, GitHub, and others.
+
+## Resources
+
+- [air wish Blog](https://blog.airwish.com): The personal blog of air wish (@ittuann).
+- [GitHub](https://github.com/ittuann/): The GitHub profile of air wish (@ittuann).
+- [Email](mailto:ittuann@gmail.com): The email address and contact information of air wish (@ittuann).
+- [Open Source Code (AGPL 3.0)](https://github.com/ittuann/ittuann.com): GitHub repository hosting the open source code for this website.
