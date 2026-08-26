@@ -166,6 +166,7 @@ export default function Home() {
             alt="air wish avatar"
             width={320}
             height={320}
+            priority
             className="rounded-full"
           />
         </motion.div>
