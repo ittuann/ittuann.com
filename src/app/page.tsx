@@ -18,7 +18,7 @@ export default function Home() {
   useEffect(() => {
     // 打字动画
     const controls = animate(count, roleText.length, {
-      duration: roleText.length * 0.1,
+      duration: roleText.length * 0.07,
       ease: "linear",
       onComplete: () => setIsTypingComplete(true),
     });
@@ -93,16 +93,14 @@ export default function Home() {
                 rel=""
                 title={item.describe}
                 aria-label={item.describe}
-                initial={{ opacity: 0, y: 15, scale: 0.8 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
+                initial={{ opacity: 0, x: -24 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{
-                  delay: index * 0.15,
+                  delay: index * 0.5,
                   duration: 0.5,
-                  type: "spring",
-                  stiffness: 200,
+                  ease: "easeOut",
                 }}
-                whileHover={{ scale: 1.05, y: -2 }}
-                className="flex cursor-pointer items-center gap-2 rounded-full bg-white px-3 py-3 text-gray-500 shadow-sm transition-all hover:text-black hover:shadow-md"
+                className="flex cursor-pointer items-center gap-2 rounded-full bg-white px-3 py-3 text-gray-500 shadow-sm hover:scale-105 hover:text-black hover:shadow-md"
               >
                 <Icon size={20} />
               </motion.a>
