@@ -38,7 +38,12 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="apple-mobile-web-app-title" content="air wish" />
+        <meta
+          name="content-signal"
+          content="ai-train=yes, search=yes, ai-input=yes"
+        />
       </head>
+
       <body
         className={`${fontMono.variable} ${fontSans.variable} font-mono antialiased`}
       >
